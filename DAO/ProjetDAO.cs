@@ -27,6 +27,7 @@ namespace FilRouge.DAO
             return await _DB.Projets.FindAsync(id);
         }
 
+        //AJOUT
         public async Task<Projet> AddProjet(Projet Projet)
         {
             _DB.Projets.Add(Projet);
@@ -34,6 +35,7 @@ namespace FilRouge.DAO
             return Projet;
         }
 
+        //Mise à jour
         public async Task<Projet> UpdateProjet(Projet Projet)
         {
             _DB.Entry(Projet).State = EntityState.Modified;

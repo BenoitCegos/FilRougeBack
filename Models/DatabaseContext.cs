@@ -25,8 +25,7 @@ public partial class FilRougeContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-   
-
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Commentaire>(entity =>
@@ -36,8 +35,7 @@ public partial class FilRougeContext : DbContext
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Contenu).HasColumnName("contenu");
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("VARCHAR(20)")
                 .HasColumnName("createdAt");
             entity.Property(e => e.TacheId)
                 .HasColumnType("INT")
@@ -71,8 +69,7 @@ public partial class FilRougeContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("VARCHAR(20)")
                 .HasColumnName("createdAt");
             entity.Property(e => e.Nom)
                 .HasColumnType("VARCHAR(255)")
@@ -85,12 +82,11 @@ public partial class FilRougeContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("VARCHAR(20)")
                 .HasColumnName("createdAt");
             entity.Property(e => e.Description).HasColumnName("description");
             entity.Property(e => e.EndDate)
-                .HasColumnType("VARCHAR(255)")
+                .HasColumnType("VARCHAR(20)")
                 .HasColumnName("endDate");
             entity.Property(e => e.ListeId)
                 .HasColumnType("INT")

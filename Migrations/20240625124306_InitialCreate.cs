@@ -5,7 +5,7 @@
 namespace FilRouge.Migrations
 {
     /// <inheritdoc />
-    public partial class AddCreatedField : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace FilRouge.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nom = table.Column<string>(type: "VARCHAR(255)", nullable: false),
-                    createdAt = table.Column<byte[]>(type: "TIMESTAMP", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<string>(type: "VARCHAR(20)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,8 +65,8 @@ namespace FilRouge.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nom = table.Column<string>(type: "VARCHAR(255)", nullable: false),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    createdAt = table.Column<byte[]>(type: "TIMESTAMP", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    endDate = table.Column<string>(type: "VARCHAR(255)", nullable: true),
+                    createdAt = table.Column<string>(type: "VARCHAR(20)", nullable: false),
+                    endDate = table.Column<string>(type: "VARCHAR(20)", nullable: true),
                     liste_id = table.Column<int>(type: "INT", nullable: true)
                 },
                 constraints: table =>
@@ -87,7 +87,7 @@ namespace FilRouge.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     contenu = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    createdAt = table.Column<byte[]>(type: "TIMESTAMP", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    createdAt = table.Column<string>(type: "VARCHAR(20)", nullable: false),
                     tache_id = table.Column<int>(type: "INT", nullable: true)
                 },
                 constraints: table =>

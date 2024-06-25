@@ -4,6 +4,7 @@ using FilRouge.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilRouge.Migrations
 {
     [DbContext(typeof(FilRougeContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240625124306_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,11 +39,10 @@ namespace FilRouge.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("contenu");
 
-                    b.Property<byte[]>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TIMESTAMP")
-                        .HasColumnName("createdAt")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                    b.Property<string>("CreatedAt")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)")
+                        .HasColumnName("createdAt");
 
                     b.Property<int?>("TacheId")
                         .HasColumnType("INT")
@@ -87,11 +89,10 @@ namespace FilRouge.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<byte[]>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TIMESTAMP")
-                        .HasColumnName("createdAt")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                    b.Property<string>("CreatedAt")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)")
+                        .HasColumnName("createdAt");
 
                     b.Property<string>("Nom")
                         .IsRequired()
@@ -112,18 +113,17 @@ namespace FilRouge.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<byte[]>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TIMESTAMP")
-                        .HasColumnName("createdAt")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                    b.Property<string>("CreatedAt")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)")
+                        .HasColumnName("createdAt");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("description");
 
                     b.Property<string>("EndDate")
-                        .HasColumnType("VARCHAR(255)")
+                        .HasColumnType("VARCHAR(20)")
                         .HasColumnName("endDate");
 
                     b.Property<int?>("ListeId")

@@ -35,6 +35,10 @@ namespace FilRouge
             });
             //ajout des services pour chaque DAO
             builder.Services.AddScoped<ListeDAO>();
+            builder.Services.AddScoped<ProjetDAO>();
+            builder.Services.AddScoped<TacheDAO>();
+            builder.Services.AddScoped<CommentaireDAO>();
+
 
             var app = builder.Build();
 

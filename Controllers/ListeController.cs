@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace FilRouge.Controllers
 {
-    public class FilRougeController : Controller
+    public class ListeController : Controller
     {
         private readonly ListeDAO _DAO;
 
-        public FilRougeController(ListeDAO dao)
+        public ListeController(ListeDAO dao)
         {
             _DAO = dao;
         }

@@ -11,9 +11,9 @@ public partial class Tache
 
     public string? Description { get; set; }
 
-    public DateTime? CreatedAt { get; set; }
+    public string CreatedAt { get; set; } = null!;
 
-    public DateOnly? EndDate { get; set; }
+    public string? EndDate { get; set; }
 
     public int? ListeId { get; set; }
 

@@ -9,7 +9,7 @@ public partial class Commentaire
 
     public string Contenu { get; set; } = null!;
 
-    public DateTime? CreatedAt { get; set; }
+    public string CreatedAt { get; set; } = null!;
 
     public int? TacheId { get; set; }
 

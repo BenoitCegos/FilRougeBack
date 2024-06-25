@@ -32,7 +32,7 @@ namespace FilRouge.Controllers
             return Ok(Projet);
 
         }
-
+        //Ajout 
         [HttpPost("projets")]
         public async Task<ActionResult<Projet>> PostProjet(Projet Projet)
         {
@@ -40,6 +40,7 @@ namespace FilRouge.Controllers
             return CreatedAtAction("GetProjet", new { id = Projet.Id }, Projet);
         }
 
+        //Mise à jour
         [HttpPut("/projets/{id}")]
         public async Task<IActionResult> PutProjet(int id, Projet Projet)
         {

@@ -9,7 +9,7 @@ public partial class Projet
 
     public string Nom { get; set; } = null!;
 
-    public DateTime? CreatedAt { get; set; }
+    public string CreatedAt { get; set; } = null!;
 
     public virtual ICollection<Liste> Listes { get; set; } = new List<Liste>();
 }
