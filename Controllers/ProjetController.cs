@@ -18,8 +18,6 @@ namespace FilRouge.Controllers
 
         
 
-
-
         [HttpGet("projets")]
         public async Task<ActionResult<IEnumerable<Projet>>> GetProjets()
         {
