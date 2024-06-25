@@ -15,14 +15,14 @@ namespace FilRouge.Controllers
 
 
 
-        [HttpGet("Users")]
+        [HttpGet("users")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             var reponse = await _DAO.GetUsers();
             return Ok(reponse);
         }
 
-        [HttpGet("Users/{id}")]
+        [HttpGet("users/{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
             var User = await _DAO.GetUser(id);
@@ -30,7 +30,7 @@ namespace FilRouge.Controllers
 
         }
         //Ajout 
-        [HttpPost("Users")]
+        [HttpPost("users")]
         public async Task<ActionResult<User>> PostUser(User User)
         {
             await _DAO.AddUser(User);
@@ -38,7 +38,7 @@ namespace FilRouge.Controllers
         }
 
         //Mise à jour
-        [HttpPut("/Users/{id}")]
+        [HttpPut("/users/{id}")]
         public async Task<IActionResult> PutUser(int id, User User)
         {
             if (id != User.Id)
@@ -51,7 +51,7 @@ namespace FilRouge.Controllers
             return NoContent();
         }
 
-        [HttpDelete("/Users/{id}")]
+        [HttpDelete("/users/{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var success = await _DAO.DeleteUser(id);
