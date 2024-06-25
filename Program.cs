@@ -2,7 +2,6 @@ using FilRouge.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using FilRouge.Controllers;
-using FilRouge.Models;
 using FilRouge.DAO;
 
 namespace FilRouge
@@ -15,12 +14,6 @@ namespace FilRouge
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<FilRougeContext>();
-
-            //ajout des services pour chaque DAO
-            builder.Services.AddScoped<ListeDAO>();
-
-            var app = builder.Build();
             //ajout du CORS
             builder.Services.AddCors(options =>
             {
@@ -35,12 +28,19 @@ namespace FilRouge
             //builder.Services.AddDbContext<FilRougeContext>();
             // fin ajout du CORS
 
-
-
+            //Ajout lien vers BDD azure
             builder.Services.AddDbContext<FilRougeContext>(options =>
             {
                 options.UseSqlServer("Server=tcp:monserveursql2.database.windows.net,1433;Initial Catalog=BDDFilRouge;Persist Security Info=False;User ID=bendufBDDSQLServer;Password=Zorglub12!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             });
+            //ajout des services pour chaque DAO
+            builder.Services.AddScoped<ListeDAO>();
+
+            var app = builder.Build();
+
+            // important ajout du cors
+            app.UseCors();
+
 
 
             // Configure the HTTP request pipeline.
