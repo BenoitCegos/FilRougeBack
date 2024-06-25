@@ -38,6 +38,7 @@ namespace FilRouge
             builder.Services.AddScoped<ProjetDAO>();
             builder.Services.AddScoped<TacheDAO>();
             builder.Services.AddScoped<CommentaireDAO>();
+            builder.Services.AddScoped<UserDAO>();
 
 
             var app = builder.Build();
