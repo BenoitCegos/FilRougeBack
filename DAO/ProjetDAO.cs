@@ -52,6 +52,13 @@ namespace FilRouge.DAO
             await _DB.SaveChangesAsync();
             return true;
         }
+        public async Task<IEnumerable<Projet>> GetProjetListes(int id)
+        {
+            return await _DB.Projets.Include(u => u.Listes) 
+                                     .ThenInclude(p => p.Projet)
+                                     .ToListAsync();
+        }
+                
         /*
         public async Task<IEnumerable<User>> GetUsers()
         {
