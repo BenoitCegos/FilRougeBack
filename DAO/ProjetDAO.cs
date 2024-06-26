@@ -54,10 +54,11 @@ namespace FilRouge.DAO
         }
         public async Task<IEnumerable<Projet>> GetProjetListes(int id)
         {
-            var listesParProjet = _DB.Projets
-                                    .Include(p=>p.Id ==id)
-                                    .ToList();
-            return listesParProjet;
+            return await listesParProjet = _DB.Projets.
+                Where(p => p.Id == id)
+                .Include(p => p.Listes)
+                .FirstOrDefault();
+
                 //.Listes.Include(u => u.Projet)
                                          //.FirstOrDefaultAsync(u => u.ProjetId == id);
         }
