@@ -41,7 +41,7 @@ namespace FilRouge.Controllers
         }
 
         //Mise à jour
-        [HttpPut("/projets/{id}")]
+        [HttpPut("projets/{id}")]
         public async Task<IActionResult> PutProjet(int id, Projet Projet)
         {
             if (id != Projet.Id)
@@ -54,7 +54,7 @@ namespace FilRouge.Controllers
             return NoContent();
         }
 
-        [HttpDelete("/projets/{id}")]
+        [HttpDelete("projets/{id}")]
         public async Task<IActionResult> DeleteProjet(int id)
         {
             var success = await _DAO.DeleteProjet(id);

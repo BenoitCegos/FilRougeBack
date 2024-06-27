@@ -39,7 +39,7 @@ namespace FilRouge.Controllers
         }
 
         //Mise à jour
-        [HttpPut("/Taches/{id}")]
+        [HttpPut("Taches/{id}")]
         public async Task<IActionResult> PutTache(int id, Tache Tache)
         {
             if (id != Tache.Id)
@@ -52,7 +52,7 @@ namespace FilRouge.Controllers
             return NoContent();
         }
 
-        [HttpDelete("/Taches/{id}")]
+        [HttpDelete("Taches/{id}")]
         public async Task<IActionResult> DeleteTache(int id)
         {
             var success = await _DAO.DeleteTache(id);
@@ -63,7 +63,7 @@ namespace FilRouge.Controllers
 
             return NoContent();
         }
-        [HttpGet("/taches/GetTachesListes/{id}")]
+        [HttpGet("Taches/GetTachesListes/{id}")]
         public async Task<ActionResult<IEnumerable<Tache>>> GetTachesListes(int id)
         {
             var maReponse = await _DAO.GetTachesListes(id);

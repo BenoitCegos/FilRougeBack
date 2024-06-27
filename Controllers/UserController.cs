@@ -38,7 +38,7 @@ namespace FilRouge.Controllers
         }
 
         //Mise à jour
-        [HttpPut("/users/{id}")]
+        [HttpPut("users/{id}")]
         public async Task<IActionResult> PutUser(int id, User User)
         {
             if (id != User.Id)
@@ -51,7 +51,7 @@ namespace FilRouge.Controllers
             return NoContent();
         }
 
-        [HttpDelete("/users/{id}")]
+        [HttpDelete("users/{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var success = await _DAO.DeleteUser(id);

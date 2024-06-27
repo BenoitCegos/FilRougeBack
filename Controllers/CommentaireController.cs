@@ -39,7 +39,7 @@ namespace FilRouge.Controllers
         }
 
         //Mise à jour
-        [HttpPut("/Commentaires/{id}")]
+        [HttpPut("Commentaires/{id}")]
         public async Task<IActionResult> PutCommentaire(int id, Commentaire Commentaire)
         {
             if (id != Commentaire.Id)
@@ -52,7 +52,7 @@ namespace FilRouge.Controllers
             return NoContent();
         }
 
-        [HttpDelete("/Commentaires/{id}")]
+        [HttpDelete("Commentaires/{id}")]
         public async Task<IActionResult> DeleteCommentaire(int id)
         {
             var success = await _DAO.DeleteCommentaire(id);
@@ -63,7 +63,7 @@ namespace FilRouge.Controllers
 
             return NoContent();
         }
-        [HttpGet("/comments/GetCommentsTaches/{id}")]
+        [HttpGet("Commentaires/GetCommentsTaches/{id}")]
         public async Task<ActionResult<IEnumerable<Commentaire>>> GetCommentsTaches(int id)
         {
             var maReponse = await _DAO.GetCommentsTaches(id);

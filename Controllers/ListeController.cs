@@ -77,7 +77,7 @@ namespace FilRouge.Controllers
             return CreatedAtAction("GetListe", new { id = Liste.Id }, Liste);
         }
 
-        [HttpPut("/listes/{id}")]
+        [HttpPut("listes/{id}")]
         public async Task<IActionResult> PutListe(int id, Liste Liste)
         {
             if (id != Liste.Id)
@@ -90,7 +90,7 @@ namespace FilRouge.Controllers
             return NoContent();
         }
 
-        [HttpDelete("/listes/{id}")]
+        [HttpDelete("listes/{id}")]
         public async Task<IActionResult> DeleteListe(int id)
         {
             var success = await _DAO.DeleteListe(id);
@@ -101,7 +101,7 @@ namespace FilRouge.Controllers
 
             return NoContent();
         }
-        [HttpGet("/listes/GetProjetListes/{id}")]
+        [HttpGet("listes/GetProjetListes/{id}")]
         public async Task<ActionResult<IEnumerable<Liste>>> GetProjetListes(int id)
         {
             var maReponse = await _DAO.GetProjetListes(id);
