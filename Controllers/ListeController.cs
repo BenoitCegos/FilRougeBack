@@ -101,6 +101,19 @@ namespace FilRouge.Controllers
 
             return NoContent();
         }
+        [HttpGet("/listes/GetProjetListes/{id}")]
+        public async Task<ActionResult<IEnumerable<Liste>>> GetProjetListes(int id)
+        {
+            var maReponse = await _DAO.GetProjetListes(id);
+            if (maReponse == null)
+            {
+               return NotFound();
+            }
+            else 
+            {
+                return Ok(maReponse);
+            }
+        }
 
         //DTO Version
         /*[HttpGet("listes")]

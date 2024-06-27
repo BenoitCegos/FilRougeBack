@@ -47,5 +47,11 @@ namespace FilRouge.DAO
             await _DB.SaveChangesAsync();
             return true;
         }
+        public async Task<IEnumerable<Commentaire>> GetCommentsTaches(int id)
+        {
+
+            return _DB.Commentaires.Where(c => c.TacheId == id).ToArray();
+
+        }
     }
 }

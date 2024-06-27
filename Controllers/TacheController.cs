@@ -63,6 +63,18 @@ namespace FilRouge.Controllers
 
             return NoContent();
         }
-
+        [HttpGet("/taches/GetTachesListes/{id}")]
+        public async Task<ActionResult<IEnumerable<Tache>>> GetTachesListes(int id)
+        {
+            var maReponse = await _DAO.GetTachesListes(id);
+            if (maReponse == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(maReponse);
+            }
+        }
     }
 }

@@ -52,5 +52,12 @@ namespace FilRouge.DAO
             await _DB.SaveChangesAsync();
             return true;
         }
+        public async Task<IEnumerable<Tache>> GetTachesListes(int id)
+        {
+
+            return _DB.Taches.Where(t => t.ListeId == id).ToArray();
+
+        }
+        
     }
 }

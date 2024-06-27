@@ -70,15 +70,17 @@ namespace FilRouge.DAO
             }
 
         }*/
-        public async Task<IEnumerable<Liste>> GetProjetListes(int id)
+        /*public async Task<IEnumerable<Liste>> GetProjetListes(int id)
         {
             var projet = await _DB.Projets
+                        .AsNoTracking()
                         .Where(p => p.Id == id)
                         .Include(p => p.Listes)
                         .FirstOrDefaultAsync();
             //FirstOrDefaultAsync au lieu de FirstOrDefault pour les requetes ASYNC
             return projet?.Listes ?? Enumerable.Empty<Liste>();
         }
+        */
         /*
         public async Task<IEnumerable<User>> GetUsers()
         {

@@ -63,6 +63,18 @@ namespace FilRouge.Controllers
 
             return NoContent();
         }
-
+        [HttpGet("/comments/GetCommentsTaches/{id}")]
+        public async Task<ActionResult<IEnumerable<Commentaire>>> GetCommentsTaches(int id)
+        {
+            var maReponse = await _DAO.GetCommentsTaches(id);
+            if (maReponse == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(maReponse);
+            }
+        }
     }
 }

@@ -65,12 +65,6 @@ namespace FilRouge.Controllers
 
             return NoContent();
         }
-        [HttpGet("projets/GetProjetlistes/{id}")]
-        public async Task<ActionResult<IEnumerable<Projet>>> GetProjetListes(int id)
-        {
-            var reponse = await _DAO.GetProjetListes(id);
-            return Ok(reponse);
-        }
-
+       
     }
 }
