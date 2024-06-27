@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilRouge.Migrations
 {
     [DbContext(typeof(FilRougeContext))]
-    [Migration("20240625124306_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240627115136_InialCreate")]
+    partial class InialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,10 +39,11 @@ namespace FilRouge.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("contenu");
 
-                    b.Property<string>("CreatedAt")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(20)")
-                        .HasColumnName("createdAt");
+                    b.Property<DateTime?>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("createdAt")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<int?>("TacheId")
                         .HasColumnType("INT")
@@ -89,10 +90,11 @@ namespace FilRouge.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CreatedAt")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(20)")
-                        .HasColumnName("createdAt");
+                    b.Property<DateTime?>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("createdAt")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("Nom")
                         .IsRequired()
@@ -113,17 +115,18 @@ namespace FilRouge.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CreatedAt")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(20)")
-                        .HasColumnName("createdAt");
+                    b.Property<DateTime?>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasColumnName("createdAt")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("description");
 
-                    b.Property<string>("EndDate")
-                        .HasColumnType("VARCHAR(20)")
+                    b.Property<DateOnly?>("EndDate")
+                        .HasColumnType("DATE")
                         .HasColumnName("endDate");
 
                     b.Property<int?>("ListeId")

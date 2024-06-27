@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace FilRouge.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +18,7 @@ namespace FilRouge.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nom = table.Column<string>(type: "VARCHAR(255)", nullable: false),
-                    createdAt = table.Column<string>(type: "VARCHAR(20)", nullable: false)
+                    createdAt = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
                 {
@@ -65,8 +66,8 @@ namespace FilRouge.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nom = table.Column<string>(type: "VARCHAR(255)", nullable: false),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    createdAt = table.Column<string>(type: "VARCHAR(20)", nullable: false),
-                    endDate = table.Column<string>(type: "VARCHAR(20)", nullable: true),
+                    createdAt = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "GETDATE()"),
+                    endDate = table.Column<DateOnly>(type: "DATE", nullable: true),
                     liste_id = table.Column<int>(type: "INT", nullable: true)
                 },
                 constraints: table =>
@@ -87,7 +88,7 @@ namespace FilRouge.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     contenu = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    createdAt = table.Column<string>(type: "VARCHAR(20)", nullable: false),
+                    createdAt = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "GETDATE()"),
                     tache_id = table.Column<int>(type: "INT", nullable: true)
                 },
                 constraints: table =>
