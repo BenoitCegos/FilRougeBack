@@ -32,7 +32,7 @@ namespace FilRouge.Controllers
         }
         //Ajout 
         [HttpPost("Taches")]
-        public async Task<ActionResult<Tache>> PostTache(Tache Tache)
+        public async Task<ActionResult<Tache>> PostTache([FromBody] Tache Tache)
         {
             await _DAO.AddTache(Tache);
             return CreatedAtAction("GetTache", new { id = Tache.Id }, Tache);
@@ -40,7 +40,7 @@ namespace FilRouge.Controllers
 
         //Mise à jour
         [HttpPut("Taches/{id}")]
-        public async Task<IActionResult> PutTache(int id, Tache Tache)
+        public async Task<IActionResult> PutTache(int id, [FromBody] Tache Tache)
         {
             if (id != Tache.Id)
             {

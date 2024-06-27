@@ -31,7 +31,7 @@ namespace FilRouge.Controllers
         }
         //Ajout 
         [HttpPost("Commentaires")]
-        public async Task<ActionResult<Commentaire>> PostCommentaire(Commentaire Commentaire)
+        public async Task<ActionResult<Commentaire>> PostCommentaire([FromBody] Commentaire Commentaire)
         {
             await _DAO.AddCommentaire(Commentaire);
             return CreatedAtAction("GetCommentaire", new { id = Commentaire.Id }, Commentaire);
@@ -39,7 +39,7 @@ namespace FilRouge.Controllers
 
         //Mise à jour
         [HttpPut("Commentaires/{id}")]
-        public async Task<IActionResult> PutCommentaire(int id, Commentaire Commentaire)
+        public async Task<IActionResult> PutCommentaire(int id, [FromBody] Commentaire Commentaire)
         {
             if (id != Commentaire.Id)
             {

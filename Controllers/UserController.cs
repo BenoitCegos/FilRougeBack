@@ -31,7 +31,7 @@ namespace FilRouge.Controllers
         }
         //Ajout 
         [HttpPost("users")]
-        public async Task<ActionResult<User>> PostUser(User User)
+        public async Task<ActionResult<User>> PostUser([FromBody] User User)
         {
             await _DAO.AddUser(User);
             return CreatedAtAction("GetUser", new { id = User.Id }, User);
@@ -39,7 +39,7 @@ namespace FilRouge.Controllers
 
         //Mise à jour
         [HttpPut("users/{id}")]
-        public async Task<IActionResult> PutUser(int id, User User)
+        public async Task<IActionResult> PutUser(int id, [FromBody] User User)
         {
             if (id != User.Id)
             {

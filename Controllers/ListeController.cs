@@ -71,14 +71,14 @@ namespace FilRouge.Controllers
         }
 
         [HttpPost("listes")]
-        public async Task<ActionResult<Liste>> PostListe(Liste Liste)
+        public async Task<ActionResult<Liste>> PostListe([FromBody] Liste Liste)
         {
             await _DAO.AddListe(Liste);
             return CreatedAtAction("GetListe", new { id = Liste.Id }, Liste);
         }
 
         [HttpPut("listes/{id}")]
-        public async Task<IActionResult> PutListe(int id, Liste Liste)
+        public async Task<IActionResult> PutListe(int id, [FromBody] Liste Liste)
         {
             if (id != Liste.Id)
             {
