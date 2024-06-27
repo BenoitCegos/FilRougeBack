@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FilRouge.Controllers;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace FilRouge.DAO
 {
@@ -52,17 +53,32 @@ namespace FilRouge.DAO
             await _DB.SaveChangesAsync();
             return true;
         }
-        public async Task<IEnumerable<Projet>> GetProjetListes(int id)
+        /*public async Task<IEnumerable<Liste>> GetProjetListes(int id)
         {
-            return await listesParProjet = _DB.Projets.
+            var listesParProjet = _DB.Projets.
                 Where(p => p.Id == id)
                 .Include(p => p.Listes)
                 .FirstOrDefault();
+            
+            if (listesParProjet ==null)
+            {
+               // return NotFound
+            }
+            else
+            {
+                return await listesParProjet;
+            }
 
-                //.Listes.Include(u => u.Projet)
-                                         //.FirstOrDefaultAsync(u => u.ProjetId == id);
+        }*/
+        public async Task<IEnumerable<Liste>> GetProjetListes(int id)
+        {
+            var projet = await _DB.Projets
+                        .Where(p => p.Id == id)
+                        .Include(p => p.Listes)
+                        .FirstOrDefaultAsync();
+            //FirstOrDefaultAsync au lieu de FirstOrDefault pour les requetes ASYNC
+            return projet?.Listes ?? Enumerable.Empty<Liste>();
         }
-                
         /*
         public async Task<IEnumerable<User>> GetUsers()
         {
