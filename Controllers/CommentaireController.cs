@@ -26,7 +26,6 @@ namespace FilRouge.Controllers
         public async Task<ActionResult<Commentaire>> GetCommentaire(int id)
         {
             var Commentaire = await _DAO.GetCommentaire(id);
-            var ehf=5;
             return Ok(Commentaire);
 
         }
