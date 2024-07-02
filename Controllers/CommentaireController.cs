@@ -41,14 +41,19 @@ namespace FilRouge.Controllers
         [HttpPut("Commentaires/{id}")]
         public async Task<IActionResult> PutCommentaire(int id, [FromBody] Commentaire Commentaire)
         {
-            if (id != Commentaire.Id)
+            if (Commentaire == null)
             {
-                return BadRequest();
+                return BadRequest("Projet is null");
+            }
+            Commentaire? toUpdate = _DAO.GetCommentaire(id).Result;
+            if (toUpdate == null)
+            {
+                return NotFound();
             }
 
-            await _DAO.UpdateCommentaire(Commentaire);
-
-            return NoContent();
+            toUpdate.Contenu = Commentaire.Contenu;
+            _DAO.UpdateCommentaire(toUpdate);
+            return Json(toUpdate);
         }
 
         [HttpDelete("Commentaires/{id}")]

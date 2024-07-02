@@ -16,7 +16,7 @@ namespace FilRouge.Controllers
             _DAO = dao;
         }
 
-        
+
 
         [HttpGet("projets")]
         public async Task<ActionResult<IEnumerable<Projet>>> GetProjets()
@@ -42,17 +42,32 @@ namespace FilRouge.Controllers
 
         //Mise à jour
         [HttpPut("projets/{id}")]
-        public async Task<IActionResult> PutProjet(int id, [FromBody] Projet Projet)
+        public IActionResult PutProjet([FromBody] Projet projet, int id)
         {
-            if (id != Projet.Id)
+            // Update projet in database
+            try
             {
-                return BadRequest();
+                if (projet == null)
+                {
+                    return BadRequest("Projet is null");
+                }
+                Projet? toUpdate = _DAO.GetProjet(id).Result;
+                if (toUpdate == null)
+                {
+                    return NotFound();
+                }
+                
+                toUpdate.Nom = projet.Nom;
+                _DAO.UpdateProjet(toUpdate);
+                return Json(toUpdate);
             }
-
-            await _DAO.UpdateProjet(Projet);
-
-            return NoContent();
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
+
+        
 
         [HttpDelete("projets/{id}")]
         public async Task<IActionResult> DeleteProjet(int id)
@@ -65,6 +80,6 @@ namespace FilRouge.Controllers
 
             return NoContent();
         }
-       
+
     }
 }

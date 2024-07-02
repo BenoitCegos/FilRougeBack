@@ -36,11 +36,15 @@ namespace FilRouge.DAO
         }
 
         //Mise à jour
-        public async Task<Tache> UpdateTache(Tache Tache)
+        public void UpdateTache(Tache Tache)
         {
-            _DB.Entry(Tache).State = EntityState.Modified;
-            await _DB.SaveChangesAsync();
-            return Tache;
+            if (string.IsNullOrWhiteSpace(Tache.Nom))
+                throw new ArgumentException("Tache name ('nom') cannot be null or empty.");
+            if (string.IsNullOrWhiteSpace(Tache.Description))
+                throw new ArgumentException("Tache Description ('description') cannot be null or empty.");
+
+            _DB.Taches.Update(Tache);
+            _DB.SaveChangesAsync();
         }
 
         public async Task<bool> DeleteTache(int id)
@@ -58,6 +62,6 @@ namespace FilRouge.DAO
             return _DB.Taches.Where(t => t.ListeId == id).ToArray();
 
         }
-        
+
     }
 }

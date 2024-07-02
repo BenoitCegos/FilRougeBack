@@ -78,16 +78,20 @@ namespace FilRouge.Controllers
         }
 
         [HttpPut("listes/{id}")]
-        public async Task<IActionResult> PutListe(int id, [FromBody] Liste Liste)
+        public IActionResult PutListe(int id, [FromBody] Liste Liste)
         {
-            if (id != Liste.Id)
+            if (Liste == null)
             {
-                return BadRequest();
+                return BadRequest("Projet is null");
             }
-
-            await _DAO.UpdateListe(Liste);
-
-            return NoContent();
+            Liste? toUpdate = _DAO.GetListe(id).Result;
+            if (toUpdate == null)
+            {
+                return NotFound();
+            }
+            toUpdate.Nom = Liste.Nom;
+            _DAO.UpdateListe(toUpdate);
+            return Json(toUpdate);
         }
 
         [HttpDelete("listes/{id}")]
@@ -107,9 +111,9 @@ namespace FilRouge.Controllers
             var maReponse = await _DAO.GetProjetListes(id);
             if (maReponse == null)
             {
-               return NotFound();
+                return NotFound();
             }
-            else 
+            else
             {
                 return Ok(maReponse);
             }

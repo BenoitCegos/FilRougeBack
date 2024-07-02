@@ -12,46 +12,49 @@ namespace FilRouge.DAO
 {
     public class ListeDAO
 
+    {
+        private readonly FilRougeContext _DB;
+
+        public ListeDAO(FilRougeContext context)
         {
-            private readonly FilRougeContext _DB;
+            _DB = context;
+        }
 
-            public ListeDAO(FilRougeContext context)
-            {
-                _DB = context;
-            }
+        public async Task<IEnumerable<Liste>> GetListes()
+        {
+            return await _DB.Listes.ToListAsync();
+        }
 
-            public async Task<IEnumerable<Liste>> GetListes()
-            {
-                return await _DB.Listes.ToListAsync();
-            }
+        public async Task<Liste> GetListe(int id)
+        {
+            return await _DB.Listes.FindAsync(id);
+        }
 
-            public async Task<Liste> GetListe(int id)
-            {
-                return await _DB.Listes.FindAsync(id);
-            }
+        public async Task<Liste> AddListe(Liste Liste)
+        {
+            _DB.Listes.Add(Liste);
+            await _DB.SaveChangesAsync();
+            return Liste;
+        }
 
-            public async Task<Liste> AddListe(Liste Liste)
-            {
-                _DB.Listes.Add(Liste);
-                await _DB.SaveChangesAsync();
-                return Liste;
-            }
+        public void UpdateListe(Liste Liste)
+        {
+            if (string.IsNullOrWhiteSpace(Liste.Nom))
+                throw new ArgumentException("Liste name ('nom') cannot be null or empty.");
 
-            public async Task<Liste> UpdateListe(Liste Liste)
-            {
-                _DB.Entry(Liste).State = EntityState.Modified;
-                await _DB.SaveChangesAsync();
-                return Liste;
-            }
+            _DB.Listes.Update(Liste);
+            _DB.SaveChangesAsync();
+            
+        }
 
-            public async Task<bool> DeleteListe(int id)
-            {
-                var Liste = await _DB.Listes.FindAsync(id);
-                if (Liste == null) return false;
+        public async Task<bool> DeleteListe(int id)
+        {
+            var Liste = await _DB.Listes.FindAsync(id);
+            if (Liste == null) return false;
 
-                _DB.Listes.Remove(Liste);
-                await _DB.SaveChangesAsync();
-                return true;
+            _DB.Listes.Remove(Liste);
+            await _DB.SaveChangesAsync();
+            return true;
         }
         public async Task<IEnumerable<Liste>> GetProjetListes(int id)
         {
@@ -102,5 +105,5 @@ namespace FilRouge.DAO
             return true;
         }*/
     }
-    }
+}
 

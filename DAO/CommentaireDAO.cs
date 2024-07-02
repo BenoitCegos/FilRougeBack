@@ -31,11 +31,13 @@ namespace FilRouge.DAO
         }
 
         //Mise à jour
-        public async Task<Commentaire> UpdateCommentaire(Commentaire Commentaire)
+        public void UpdateCommentaire(Commentaire Commentaire)
         {
-            _DB.Entry(Commentaire).State = EntityState.Modified;
-            await _DB.SaveChangesAsync();
-            return Commentaire;
+            if (string.IsNullOrWhiteSpace(Commentaire.Contenu))
+                throw new ArgumentException("Commentaire contenu ('nom') cannot be null or empty.");
+
+            _DB.Commentaires.Update(Commentaire);
+            _DB.SaveChangesAsync();
         }
 
         public async Task<bool> DeleteCommentaire(int id)

@@ -37,11 +37,13 @@ namespace FilRouge.DAO
         }
 
         //Mise à jour
-        public async Task<Projet> UpdateProjet(Projet Projet)
+        public void UpdateProjet(Projet Projet)
         {
-            _DB.Entry(Projet).State = EntityState.Modified;
-            await _DB.SaveChangesAsync();
-            return Projet;
+            if (string.IsNullOrWhiteSpace(Projet.Nom))
+                throw new ArgumentException("Project name ('nom') cannot be null or empty.");
+
+            _DB.Projets.Update(Projet);
+            _DB.SaveChangesAsync();
         }
 
         public async Task<bool> DeleteProjet(int id)

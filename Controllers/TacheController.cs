@@ -40,14 +40,22 @@ namespace FilRouge.Controllers
 
         //Mise à jour
         [HttpPut("Taches/{id}")]
-        public async Task<IActionResult> PutTache(int id, [FromBody] Tache Tache)
+        public IActionResult PutTache(int id, [FromBody] Tache Tache)
         {
-            if (id != Tache.Id)
+            if (Tache == null)
             {
-                return BadRequest();
+                return BadRequest("Projet is null");
             }
+            Tache? toUpdate = _DAO.GetTache(id).Result;
 
-            await _DAO.UpdateTache(Tache);
+            if (toUpdate == null)
+            {
+                return NotFound();
+            }
+            toUpdate.Nom = Tache.Nom;
+            toUpdate.Description = Tache.Description;
+            
+            _DAO.UpdateTache(toUpdate);
 
             return NoContent();
         }
