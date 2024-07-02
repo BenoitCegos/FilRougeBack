@@ -54,6 +54,7 @@ namespace FilRouge.Controllers
             }
             toUpdate.Nom = Tache.Nom;
             toUpdate.Description = Tache.Description;
+            
             _DAO.UpdateTache(toUpdate);
 
             return NoContent();
